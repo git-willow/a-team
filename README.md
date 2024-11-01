@@ -11,7 +11,8 @@
 
 # 個人で参考にしたサイトなど
 全体で共有したいものがあれば、以下を参考に追加をお願いします。<br>
-・[READMEの使い方](https://qiita.com/mzmz__02/items/b219c1592404eabda52d)<br><br>
+・[READMEの使い方](https://qiita.com/mzmz__02/items/b219c1592404eabda52d)<br>
+・[Markdown記法でコメントアウトする](https://qiita.com/yu0819ki/items/e1e1d20cedc68706ba23)<br><br>
 ↓追加したいものを記入↓<br>
 ・[基本的な書き方とフォーマットの構文](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)（READMEやプルリクエストを書くときに役立つかもです）<br>
 <!-- 以下のように追加をお願いします。
