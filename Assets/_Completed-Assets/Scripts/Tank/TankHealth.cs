@@ -17,6 +17,16 @@ namespace Complete
         private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
         private float m_CurrentHealth;                      // How much health the tank currently has.
         private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
+        public float m_InvincibleTime;
+        //private InvincibleProp invincibleProp = new InvincibleProp();
+        private Renderer rend;
+
+        private bool m_invincibleSub;
+        public bool m_Invincible
+        {
+            get { return m_invincibleSub; }
+            set { m_invincibleSub = m_InvincibleTime > 0; }
+        }
 
 
         private void Awake ()
@@ -40,6 +50,23 @@ namespace Complete
 
             // Update the health slider's value and color.
             SetHealthUI();
+        }
+
+        private void Start()
+        {
+            rend = GetComponent<Renderer>();
+            rend.enabled = true;
+        }
+
+        private void Update()
+        {
+            m_InvincibleTime -= Time.deltaTime;
+            bool is_visible = Mathf.FloorToInt(Time.time) % 2 == 0;
+
+            if (m_Invincible)
+            {
+                rend.enabled = is_visible;
+            }
         }
 
 
@@ -87,5 +114,20 @@ namespace Complete
             // Turn the tank off.
             gameObject.SetActive (false);
         }
+
+        public void StartInvincible(float setTime)
+        {
+            m_InvincibleTime = setTime;
+        }
     }
+
+    //public class InvincibleProp
+    //{
+    //    private bool m_invincible;
+    //    public bool m_Invincible
+    //    {
+    //        get { return m_invincible; }
+    //        set { m_invincible = TankHealth.m_InvincibleTime > 0; }
+    //    }
+    //}
 }
