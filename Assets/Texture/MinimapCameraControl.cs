@@ -19,7 +19,6 @@ namespace Complete
             if (m_Target == null)
             {
                 m_Target = GameObject.Find("CompleteTank(Clone)").transform;
-                //Debug.LogWarning("追従対象が指定されていません。");
                 return;
             }
 
