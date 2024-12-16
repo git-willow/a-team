@@ -1133,6 +1133,7 @@ MonoBehaviour:
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_Wins: 0
+  tpsCameraControl: {fileID: 1771596989}
   currentGameState: 0
 --- !u!4 &1304999366
 Transform:
@@ -1476,6 +1477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771596987}
   - component: {fileID: 1771596988}
+  - component: {fileID: 1771596989}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -1506,7 +1508,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771596986}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e26b621854da943aeca10c9a73880c, type: 3}
   m_Name: 
@@ -1515,6 +1517,22 @@ MonoBehaviour:
   m_ScreenEdgeBuffer: 4
   m_MinSize: 6.5
   m_Targets: []
+--- !u!114 &1771596989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771596986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a64e26fd7c2ea642b836b940044e627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTank: {fileID: 0}
+  distance: 3
+  height: 2
+  smoothSpeed: 10
 --- !u!1001 &1774814140
 PrefabInstance:
   m_ObjectHideFlags: 0
