@@ -33,8 +33,8 @@ namespace Complete
 
 
         // TPS機能追加
-        //[SerializeField]
-        //private TpsCameraControl tpsCameraControl;
+        [SerializeField]
+        private TpsCameraControl tpsCameraControl;
 
         // ゲームの状態を表す変数
         public GameState currentGameState;
@@ -90,18 +90,14 @@ namespace Complete
 
         private void SetCameraTargets()
         {
-            // Create a collection of transforms the same size as the number of tanks.
-            Transform[] targets = new Transform[m_Tanks.Length];
+            // プレイヤーのタンクの砲台を対象に設定
+            Transform target = m_Tanks[0].m_Instance.transform.Find("TankRenderers/TankTurret");
 
-            // For each of these transforms...
-            for (int i = 0; i < targets.Length; i++)
+            if (target != null)
             {
-                // ... set it to the appropriate tank transform.
-                targets[i] = m_Tanks[i].m_Instance.transform;
+                // 追従対象を設定
+                tpsCameraControl.targetTank = target;
             }
-
-            // These are the targets the camera should follow.
-            m_CameraControl.m_Targets = targets;
         }
 
 
