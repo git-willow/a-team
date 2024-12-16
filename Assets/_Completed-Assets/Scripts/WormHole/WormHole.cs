@@ -1,3 +1,4 @@
+using Complete;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -59,13 +60,14 @@ public class WormHole : MonoBehaviour
             Debug.LogError("Collider is null.");
             yield break;
         }
-
+        
+        var tankHealth = coll.gameObject.GetComponent<Complete.TankHealth>();
+        tankHealth.StartInvincible(w_InvincibleTime);
         yield return new WaitForSeconds(w_WarpTime);
 
         if (w_NextWarmHole != null)
         {
             coll.transform.position = w_NextWarmHole.transform.position;
-            var tankHealth = coll.gameObject.GetComponent<Complete.TankHealth>();
             WormHole hole = w_NextWarmHole.GetComponent<WormHole>();
             if (tanks.ContainsKey(id))
             {
@@ -83,8 +85,6 @@ public class WormHole : MonoBehaviour
             {
                 hole.tanks.Add(id, Time.time);
             }
-            tankHealth.StartInvincible(w_InvincibleTime);
-            //Debug.Log(tankHealth.m_InvincibleTime);
         }
         else
         {
