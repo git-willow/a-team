@@ -25,11 +25,13 @@ namespace Complete
         public float t_TurnSpeed = 100f; // 砲塔の回転速度
         private string t_TurnAxisName; // 手順1で定義した砲塔を回転するキーのName
         public GameObject turrent; // 砲塔のゲームオブジェクトの参照
+        private TankHealth tankHealth;
 
 
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
+            tankHealth = m_Rigidbody.GetComponent<TankHealth>();
 
             // 砲台のnullチェック
             if (turrent == null)
@@ -141,6 +143,10 @@ namespace Complete
 
         private void Move()
         {
+            if (tankHealth.m_Invincible)
+            {
+                return;
+            }
             // Create a vector in the direction the tank is facing with a magnitude based on the input, speed and the time between frames.
             Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime;
 
@@ -151,6 +157,10 @@ namespace Complete
 
         private void Turn()
         {
+            if (tankHealth.m_Invincible)
+            {
+                return;
+            }
             // Determine the number of degrees to be turned based on the input, speed and time between frames.
             float turn = m_TurnInputValue * m_TurnSpeed * Time.deltaTime;
 
@@ -166,6 +176,10 @@ namespace Complete
         /// </summary>
         private void TurretTurn()
         {
+            if (tankHealth.m_Invincible)
+            {
+                return;
+            }
             // t_TurnInputValueの入力値・回転速度・時間に基づいて砲台の回転角を計算
             float turretRotation = t_TurnInputValue * t_TurnSpeed * Time.deltaTime;
 
