@@ -18,6 +18,18 @@ namespace Complete
         private float m_CurrentHealth;                      // How much health the tank currently has.
         private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
 
+        public float m_InvincibleTime;
+        private Renderer rend1;
+        private Renderer rend2;
+        private Renderer rend3;
+        private Renderer rend4;
+
+        private bool m_invincibleSub;
+        public bool m_Invincible
+        {
+            get { return m_invincibleSub; }
+            set { m_invincibleSub = value; }
+        }
 
         private void Awake ()
         {
@@ -42,9 +54,45 @@ namespace Complete
             SetHealthUI();
         }
 
+        private void Start()
+        {
+            rend1 = transform.Find("TankRenderers/TankChassis").gameObject.GetComponent<Renderer>();
+            rend2 = transform.Find("TankRenderers/TankTracksLeft").gameObject.GetComponent<Renderer>();
+            rend3 = transform.Find("TankRenderers/TankTracksRight").gameObject.GetComponent<Renderer>();
+            rend4 = transform.Find("TankRenderers/TankTurret").gameObject.GetComponent<Renderer>();
+            rend1.enabled = true;
+            rend2.enabled = true;
+            rend3.enabled = true;
+            rend4.enabled = true;
+        }
+
+        private void Update()
+        {
+            m_InvincibleTime -= Time.deltaTime;
+            m_Invincible = m_InvincibleTime > 0;
+            var repeatValue = Mathf.Repeat(Time.time, 1);
+            if (m_Invincible)
+            {
+                rend1.enabled = repeatValue > 0.5f;
+                rend2.enabled = repeatValue > 0.5f;
+                rend3.enabled = repeatValue > 0.5f;
+                rend4.enabled = repeatValue > 0.5f;
+            }
+            else
+            {
+                rend1.enabled = true;
+                rend2.enabled = true;
+                rend3.enabled = true;
+                rend4.enabled = true;
+            }
+        }
 
         public void TakeDamage (float amount)
         {
+            if (m_Invincible)
+            {
+                return;
+            }
             // Reduce current health by the amount of damage done.
             m_CurrentHealth -= amount;
 
@@ -86,6 +134,11 @@ namespace Complete
 
             // Turn the tank off.
             gameObject.SetActive (false);
+        }
+
+        public void StartInvincible(float setTime)
+        {
+            m_InvincibleTime = setTime;
         }
     }
 }

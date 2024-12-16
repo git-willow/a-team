@@ -35,6 +35,7 @@ namespace Complete
         // ゲージの伸縮を管理するbool変数
         //private bool isDistanceIncreasing = true;
 
+        private TankHealth tankHealth;
 
         private void OnEnable()
         {
@@ -46,6 +47,8 @@ namespace Complete
 
         private void Start()
         {
+            tankHealth = this.gameObject.GetComponent<TankHealth>();
+
             // The fire axis is based on the player number.
             m_FireButton = "Fire" + m_PlayerNumber;
 
@@ -108,6 +111,10 @@ namespace Complete
 
         private void Fire()
         {
+            if (tankHealth.m_Invincible)
+            {
+                return;
+            }
             // 弾の消費
             currentAmmo--;
             Debug.Log(currentAmmo);
