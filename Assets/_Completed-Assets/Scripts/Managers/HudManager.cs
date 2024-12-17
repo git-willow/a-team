@@ -26,6 +26,8 @@ namespace Complete
             {
                 tankManager.OnWeaponStockChanged += HandleWeaponStockChanged;
             }
+            player1StockArea.GetComponent<PlayerStockArea>().UpdatePlayerStockArea(10);
+            player2StockArea.GetComponent<PlayerStockArea>().UpdatePlayerStockArea(10);
         }
 
 
@@ -37,6 +39,7 @@ namespace Complete
             {
                 case GameState.RoundStarting:
                 case GameState.RoundEnding:
+
                     // ゲーム開始または終了中はHUDを非表示
                     SetHudVisibility(false);
                     break;
