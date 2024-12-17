@@ -34,7 +34,7 @@ public class PlayerStockArea : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             // stockCount‚ªi+1‚Ì”{”‚È‚ç‘Î‰ž‚·‚éShellMultiplier‚ð•\Ž¦
-            if (stockCount >= (i + 1) * 10)
+            if (stockCount > (i + 1) * 10)
             {
                 shellMultiplierImages[i].gameObject.SetActive(true);
             }
